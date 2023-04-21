@@ -695,24 +695,21 @@ class RWingLoss(nn.Module):
         loss = torch.mean(losses)
         return loss
     
-class RWing(nn.Module):
-    def __init__(self, w=10.0, epsilon=2.0):
-        super(RWing, self).__init__()
-        self.w = w
-        self.epsilon = epsilon
-        self.c = w - w * math.log(1 + w / epsilon)
+class RWing(x):
+    w=10.0
+    epsilon=2.0 
+    c = w - w * math.log(1 + w / epsilon)
 
-    def forward(self, x):
-        absolute_x = torch.abs(x)
-        w_tensor = torch.full_like(absolute_x, self.w)  # 创建与absolute_x相同形状和dtype的w_tensor
-        losses = torch.where(
-            torch.gt(w_tensor, absolute_x),
-            w_tensor * torch.log(1 + absolute_x / self.epsilon),
-            absolute_x - self.c
-        )
-        print("losses shape:", losses.shape)
-        loss = torch.mean(losses)
-        return loss 
+    absolute_x = torch.abs(x)
+    w_tensor = torch.full_like(absolute_x, w)  # 创建与absolute_x相同形状和dtype的w_tensor
+    losses = torch.where(
+        torch.gt(w_tensor, absolute_x),
+        w_tensor * torch.log(1 + absolute_x / epsilon),
+        absolute_x - c
+    )
+    print("losses shape:", losses.shape)
+    loss = torch.mean(losses)
+    return loss 
     
 class DiceCELoss(_Loss):
     """
