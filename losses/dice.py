@@ -694,7 +694,25 @@ class RWingLoss(nn.Module):
         print("losses shape:", losses.shape)
         loss = torch.mean(losses)
         return loss
- 
+    
+class RWing(nn.Module):
+    def __init__(self, w=10.0, epsilon=2.0):
+        super(RWing, self).__init__()
+        self.w = w
+        self.epsilon = epsilon
+        self.c = w - w * math.log(1 + w / epsilon)
+
+    def forward(self, x):
+        absolute_x = torch.abs(x)
+        w_tensor = torch.full_like(absolute_x, self.w)  # 创建与absolute_x相同形状和dtype的w_tensor
+        losses = torch.where(
+            torch.gt(w_tensor, absolute_x),
+            w_tensor * torch.log(1 + absolute_x / self.epsilon),
+            absolute_x - self.c
+        )
+        print("losses shape:", losses.shape)
+        loss = torch.mean(losses)
+        return loss 
     
 class DiceCELoss(_Loss):
     """
@@ -898,6 +916,12 @@ class DiceCELoss(_Loss):
             rw = RWingLoss()
             HDDT_loss = self.HD3to2DTLoss(input, target)
             total_loss: torch.Tensor = rw(HDDT_loss, dice_loss+ce_loss)
+        elif self.HD == 14:
+            HDDT_loss = self.HD3to2DTLoss(input, target)
+            HDDT_loss = RWing(HDDT_loss)
+            print(self.lambda_dice)
+#             alpha=10**(-7)
+            total_loss: torch.Tensor = self.lambda_dice * (dice_loss + ce_loss) + (1 - self.lambda_dice) * HDDT_loss
         return total_loss
 
     
