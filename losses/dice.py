@@ -695,7 +695,7 @@ class RWingLoss(nn.Module):
         loss = torch.mean(losses)
         return loss
     
-class RWing(x):
+def RWing(x):
     w=10.0
     epsilon=2.0 
     c = w - w * math.log(1 + w / epsilon)
