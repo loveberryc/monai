@@ -900,10 +900,15 @@ class SwinUNETR_RecDS(nn.Module):
         logits = self.out1(out1)
 
         dec23 = self.decoder25(dec4, hidden_states_out[3])
+        print(dec23.size())
         dec22 = self.decoder24(dec23, enc3)
+        print(dec22.size())
         dec21 = self.decoder23(dec22, enc2)
+        print(dec21.size())
         dec20 = self.decoder22(dec21, enc1)
+        print(dec20.size())
         out2 = self.decoder21(dec20, enc0)
+        print(out2.size(),dec4.size())
         print(self.out2(out2).size(),self.out3(dec4).size())
         dis = self.out2(out2)+self.out3(dec4)
         return logits,dis    
