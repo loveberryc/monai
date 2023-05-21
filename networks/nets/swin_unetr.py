@@ -904,6 +904,7 @@ class SwinUNETR_RecDS(nn.Module):
         dec21 = self.decoder23(dec22, enc2)
         dec20 = self.decoder22(dec21, enc1)
         out2 = self.decoder21(dec20, enc0)
+        print(self.out2(out2).size(),self.out3(dec4).size())
         dis = self.out2(out2)+self.out3(dec4)
         return logits,dis    
     
