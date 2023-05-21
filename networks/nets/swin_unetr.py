@@ -832,7 +832,7 @@ class SwinUNETR_RecDS(nn.Module):
 
         self.out1 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels)
         self.out2 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels-1)
-        self.out3 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=8 * feature_size, out_channels=out_channels-1)
+        self.out3 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=16 * feature_size, out_channels=out_channels-1)
 
     def load_from(self, weights):
 
