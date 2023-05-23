@@ -899,6 +899,10 @@ class SwinUNETR_New(nn.Module):
         logits = self.out1(out1)
 
         dec23 = self.decoder25(dec4, hidden_states_out[3])
+        print(dec13.size(),enc3.size())
+        print(dec12.size(),enc2.size())
+        print(dec11.size(),enc1.size())
+        print(dec10.size(),enc0.size())
         dec22 = self.decoder24(dec23, dec13)
         dec21 = self.decoder23(dec22, dec12)
         dec20 = self.decoder22(dec21, dec11)
