@@ -902,12 +902,12 @@ class SwinUNETR_New(nn.Module):
         print(dec12.size(),enc2.size())
         print(dec11.size(),enc1.size())
         print(dec10.size(),enc0.size())
-        print(out2.size())
         dec23 = self.decoder25(dec4, dec13)
         dec22 = self.decoder24(dec23, dec12)
         dec21 = self.decoder23(dec22, dec11)
         dec20 = self.decoder22(dec21, dec10)
         out2 = self.decoder21(dec20, out1)
+        print(out2.size())
         dis = self.out2(out2)
         return logits,dis    
     
