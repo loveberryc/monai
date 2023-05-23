@@ -579,7 +579,7 @@ class SwinUNETR_Muti(nn.Module):
         dis = self.out2(out)
         return logits,dis
 
-class SwinUNETR_RecDS(nn.Module):
+class SwinUNETR_New(nn.Module):
     """
     Swin UNETR based on: "Hatamizadeh et al.,
     Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images
@@ -832,16 +832,6 @@ class SwinUNETR_RecDS(nn.Module):
 
         self.out1 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels)
         self.out2 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels-1)
-        self.decoderDS = UnetrUpBlock(
-            spatial_dims=spatial_dims,
-            in_channels=16 * feature_size,
-            out_channels=feature_size,
-            kernel_size=3,
-            upsample_kernel_size=32,
-            norm_name=norm_name,
-            res_block=True,
-        )
-        self.out3 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels-1)
 
     def load_from(self, weights):
 
@@ -909,12 +899,11 @@ class SwinUNETR_RecDS(nn.Module):
         logits = self.out1(out1)
 
         dec23 = self.decoder25(dec4, hidden_states_out[3])
-        dec22 = self.decoder24(dec23, enc3)
-        dec21 = self.decoder23(dec22, enc2)
-        dec20 = self.decoder22(dec21, enc1)
-        out2 = self.decoder21(dec20, enc0)
-        print(self.out2(out2).size(),self.out3(self.decoderDS(dec4)).size(),self.decoderDS(dec4).size())
-        dis = self.out2(out2)+self.out3(self.decoderDS(dec4))
+        dec22 = self.decoder24(dec23, dec13)
+        dec21 = self.decoder23(dec22, dec12)
+        dec20 = self.decoder22(dec21, dec11)
+        out2 = self.decoder21(dec20, dec10)
+        dis = self.out2(out2)
         return logits,dis    
     
 class SwinUNETR_Rec(nn.Module):
