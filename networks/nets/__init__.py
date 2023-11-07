@@ -85,7 +85,7 @@ from .swin_unetr import PatchMerging, PatchMergingV2, SwinUNETR,SwinUNETR_Muti,S
 from .torchvision_fc import TorchVisionFCModel
 from .transchex import BertAttention, BertMixedLayer, BertOutput, BertPreTrainedModel, MultiModal, Pooler, Transchex
 from .unet import UNet, Unet
-from .unetr import UNETR
+from .unetr import UNETR,UNETR_New
 from .varautoencoder import VarAutoEncoder
 from .vit import ViT
 from .vitautoenc import ViTAutoEnc
