@@ -633,10 +633,10 @@ class SwinUNETR_DS(nn.Module):
         dec4 = self.encoder10(hidden_states_out[4])
         
         dec13 = self.decoder15(dec4, hidden_states_out[3])
-        dec12 = self.decoder14(dec3, enc3)
-        dec11 = self.decoder13(dec2, enc2)
-        dec10 = self.decoder12(dec1, enc1)
-        out1 = self.decoder11(dec0, enc0)
+        dec12 = self.decoder14(dec13, enc3)
+        dec11 = self.decoder13(dec12, enc2)
+        dec10 = self.decoder12(dec11, enc1)
+        out1 = self.decoder11(dec10, enc0)
         logits = self.out1(out1)
 
         dec23 = self.decoder25(dec13)
