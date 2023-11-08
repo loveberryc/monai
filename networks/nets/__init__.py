@@ -81,7 +81,7 @@ from .senet import (
     seresnext50,
     seresnext101,
 )
-from .swin_unetr import PatchMerging, PatchMergingV2, SwinUNETR,SwinUNETR_Muti,SwinUNETR_Rec,SwinUNETR_New
+from .swin_unetr import PatchMerging, PatchMergingV2, SwinUNETR,SwinUNETR_Muti,SwinUNETR_Rec,SwinUNETR_New,SwinUNETR_DS
 from .torchvision_fc import TorchVisionFCModel
 from .transchex import BertAttention, BertMixedLayer, BertOutput, BertPreTrainedModel, MultiModal, Pooler, Transchex
 from .unet import UNet, Unet
