@@ -514,7 +514,7 @@ class SwinUNETR_DS(nn.Module):
 
         self.decoder25 = UnetrPrUpBlock(
             spatial_dims=spatial_dims,
-            in_channels=16 * feature_size,
+            in_channels=8 * feature_size,
             out_channels=feature_size,
             kernel_size=3,
             upsample_kernel_size=2,
@@ -526,7 +526,7 @@ class SwinUNETR_DS(nn.Module):
 
         self.decoder24 = UnetrPrUpBlock(
             spatial_dims=spatial_dims,
-            in_channels=feature_size * 8,
+            in_channels=feature_size * 4,
             out_channels=feature_size,
             kernel_size=3,
             upsample_kernel_size=2,
@@ -538,7 +538,7 @@ class SwinUNETR_DS(nn.Module):
 
         self.decoder23 = UnetrPrUpBlock(
             spatial_dims=spatial_dims,
-            in_channels=feature_size * 4,
+            in_channels=feature_size * 2,
             out_channels=feature_size,
             kernel_size=3,
             upsample_kernel_size=2,
@@ -549,7 +549,7 @@ class SwinUNETR_DS(nn.Module):
         )
         self.decoder22 = UnetrPrUpBlock(
             spatial_dims=spatial_dims,
-            in_channels=feature_size * 2,
+            in_channels=feature_size,
             out_channels=feature_size,
             kernel_size=3,
             upsample_kernel_size=2,
