@@ -519,6 +519,8 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
+            num_layer=0,
+            stride=1,
             res_block=True,
         )
 
@@ -529,6 +531,8 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
+            num_layer=0,
+            stride=1,
             res_block=True,
         )
 
@@ -539,6 +543,8 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
+            num_layer=0,
+            stride=1,
             res_block=True,
         )
         self.decoder22 = UnetrPrUpBlock(
@@ -548,6 +554,8 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
+            num_layer=0,
+            stride=1,
             res_block=True,
         )
 
@@ -558,6 +566,8 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
+            num_layer=0,
+            stride=1,
             res_block=True,
         )
 
