@@ -519,7 +519,7 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
-            num_layer=0,
+            num_layer=3,
             stride=1,
             res_block=True,
         )
@@ -531,7 +531,7 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
-            num_layer=0,
+            num_layer=2,
             stride=1,
             res_block=True,
         )
@@ -543,7 +543,7 @@ class SwinUNETR_DS(nn.Module):
             kernel_size=3,
             upsample_kernel_size=2,
             norm_name=norm_name,
-            num_layer=0,
+            num_layer=1,
             stride=1,
             res_block=True,
         )
