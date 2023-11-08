@@ -559,17 +559,6 @@ class SwinUNETR_DS(nn.Module):
             res_block=True,
         )
 
-        self.decoder21 = UnetrPrUpBlock(
-            spatial_dims=spatial_dims,
-            in_channels=feature_size,
-            out_channels=feature_size,
-            kernel_size=3,
-            upsample_kernel_size=2,
-            norm_name=norm_name,
-            num_layer=0,
-            stride=1,
-            res_block=True,
-        )
 
         self.out1 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels)
         self.out2 = UnetOutBlock(spatial_dims=spatial_dims, in_channels=feature_size, out_channels=out_channels-1)
@@ -640,22 +629,13 @@ class SwinUNETR_DS(nn.Module):
         logits = self.out1(out1)
 
         dec23 = self.decoder25(dec13)
-        print(dec13.size(),dec23.size())
         dec22 = self.decoder24(dec12)
-        print(dec12.size(),dec22.size())
         d1 = torch.cat((dec23, dec22), dim=1)
         dec21 = self.decoder23(dec11)
         d2 = torch.cat((d1, dec21), dim=1)
         dec20 = self.decoder22(dec10)
-        print('1____')
-        print(d2.size(),dec20.size())
         d3 = torch.cat((d2, dec20), dim=1)
-        print('2____')
-        print(out1.size())
-        out2 = self.decoder21(out1)
-        print('3____')
-        print(d3.size(),out2.size())
-        d4 = torch.cat((d3, out2), dim=1)
+        d4 = torch.cat((d3, out1), dim=1)
         dis = self.out2(d4)
         
         return logits,dis
